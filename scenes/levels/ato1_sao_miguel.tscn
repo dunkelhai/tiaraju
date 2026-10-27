@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_level"]
+[ext_resource type="Script" path="res://scripts/levels/ato1_map.gd" id="2_map"]
+[ext_resource type="PackedScene" path="res://scenes/fx/backdrop.tscn" id="3_backdrop"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="4_camera"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="5_hud"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="6_pause"]
+
+[sub_resource type="Environment" id="env"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.7
+glow_strength = 1.05
+glow_bloom = 0.08
+glow_blend_mode = 1
+glow_hdr_threshold = 1.0
+glow_hdr_scale = 2.0
+
+[node name="Ato1" type="Node2D"]
+script = ExtResource("1_level")
+map_script = ExtResource("2_map")
+act_title = "Ato I"
+act_subtitle = "São Miguel Arcanjo, 1756"
+
+[node name="Env" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="Modulate" type="CanvasModulate" parent="."]
+color = Color(0.98, 0.88, 0.95, 1)
+
+[node name="Backdrop" parent="." instance=ExtResource("3_backdrop")]
+
+[node name="Ground" type="TileMapLayer" parent="."]
+
+[node name="Deco" type="TileMapLayer" parent="."]
+
+[node name="Solids" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Ledges" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("4_camera")
+
+[node name="HUD" parent="." instance=ExtResource("5_hud")]
+
+[node name="Pause" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 20
+visible = false
+script = ExtResource("6_pause")
+
+[node name="Dim" type="ColorRect" parent="Pause"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.04, 0.03, 0.08, 0.7)
+
+[node name="Titulo" type="Label" parent="Pause"]
+offset_top = 100.0
+offset_right = 480.0
+offset_bottom = 140.0
+theme_override_colors/font_color = Color(0.96, 0.93, 0.84, 1)
+theme_override_font_sizes/font_size = 33
+text = "PAUSADO"
+horizontal_alignment = 1
+
+[node name="Dica" type="Label" parent="Pause"]
+offset_top = 150.0
+offset_right = 480.0
+offset_bottom = 170.0
+theme_override_colors/font_color = Color(0.95, 0.81, 0.42, 1)
+theme_override_font_sizes/font_size = 11
+text = "Enter: continuar     Q: voltar ao título"
+horizontal_alignment = 1

@@ -1,0 +1,6 @@
+frame_size=40x32
+idle=0,2
+walk=2,6
+alert=8,1
+lunge=9,2
+hurt=11,1

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/props/arco.gd" id="1_arco"]
+[ext_resource type="Texture2D" path="res://assets/sprites/arco.png" id="2_tex"]
+[ext_resource type="Texture2D" path="res://assets/fx/luz.png" id="3_luz"]
+
+[sub_resource type="RectangleShape2D" id="shape"]
+size = Vector2(8, 40)
+
+[node name="Arco" type="Area2D"]
+z_index = -1
+collision_layer = 8
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_arco")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("2_tex")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20)
+shape = SubResource("shape")
+
+[node name="Light" type="PointLight2D" parent="."]
+position = Vector2(0, -22)
+color = Color(1, 0.8, 0.5, 1)
+energy = 0.8
+texture = ExtResource("3_luz")
+texture_scale = 1.3

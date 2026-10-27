@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://e3ytc4ww8p3n"
+path="res://.godot/imported/missoes.fnt-43a1b675744e7a7a16bd2cd0541a4335.fontdata"
+
+[deps]
+
+source_file="res://assets/fonts/missoes.fnt"
+dest_files=["res://.godot/imported/missoes.fnt-43a1b675744e7a7a16bd2cd0541a4335.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=1

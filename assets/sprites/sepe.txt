@@ -1,0 +1,7 @@
+frame_size=40x32
+idle=0,2
+run=2,6
+jump=8,1
+fall=9,1
+hurt=10,1
+attack=11,3

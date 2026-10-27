@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_hud"]
+[ext_resource type="Texture2D" path="res://assets/ui/vinheta.png" id="2_vinheta"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="Vinheta" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_vinheta")
+
+[node name="Hearts" type="HBoxContainer" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 60.0
+offset_bottom = 16.0
+theme_override_constants/separation = 2
+
+[node name="H1" type="TextureRect" parent="Hearts"]
+layout_mode = 2
+
+[node name="H2" type="TextureRect" parent="Hearts"]
+layout_mode = 2
+
+[node name="H3" type="TextureRect" parent="Hearts"]
+layout_mode = 2
+
+[node name="Message" type="Label" parent="."]
+offset_top = 214.0
+offset_right = 480.0
+offset_bottom = 236.0
+theme_override_colors/font_color = Color(0.96, 0.93, 0.84, 1)
+theme_override_colors/font_shadow_color = Color(0.06, 0.05, 0.08, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Card" type="VBoxContainer" parent="."]
+offset_top = 96.0
+offset_right = 480.0
+offset_bottom = 160.0
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Title" type="Label" parent="Card"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.93, 0.84, 1)
+theme_override_colors/font_shadow_color = Color(0.06, 0.05, 0.08, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 33
+text = "Ato I"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Card"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.81, 0.42, 1)
+theme_override_colors/font_shadow_color = Color(0.06, 0.05, 0.08, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 11
+text = "São Miguel Arcanjo, 1756"
+horizontal_alignment = 1

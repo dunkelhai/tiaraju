@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/backdrop.gd" id="1_backdrop"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/ceu.png" id="2_ceu"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/coxilhas.png" id="3_coxilhas"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/ruinas.png" id="4_ruinas"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/capim.png" id="5_capim"]
+
+[node name="Backdrop" type="Node2D"]
+script = ExtResource("1_backdrop")
+
+[node name="Ceu" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0.02)
+
+[node name="Sprite" type="Sprite2D" parent="Ceu"]
+position = Vector2(0, -24)
+texture = ExtResource("2_ceu")
+centered = false
+
+[node name="Coxilhas" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.12, 0.06)
+repeat_size = Vector2(960, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Coxilhas"]
+position = Vector2(0, 104)
+texture = ExtResource("3_coxilhas")
+centered = false
+
+[node name="Ruinas" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.32, 0.12)
+repeat_size = Vector2(960, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Ruinas"]
+position = Vector2(0, 56)
+texture = ExtResource("4_ruinas")
+centered = false
+
+[node name="Capim" type="Parallax2D" parent="."]
+z_index = 30
+scroll_scale = Vector2(1.35, 1)
+repeat_size = Vector2(960, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Capim"]
+position = Vector2(0, 236)
+texture = ExtResource("5_capim")
+centered = false

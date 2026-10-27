@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy_soldado.gd" id="1_soldado"]
+[ext_resource type="Shader" path="res://assets/shaders/flash.gdshader" id="2_flash"]
+
+[sub_resource type="ShaderMaterial" id="mat_flash"]
+shader = ExtResource("2_flash")
+shader_parameter/flash = 0.0
+
+[sub_resource type="RectangleShape2D" id="shape_body"]
+size = Vector2(12, 26)
+
+[sub_resource type="RectangleShape2D" id="shape_hurt"]
+size = Vector2(14, 26)
+
+[sub_resource type="RectangleShape2D" id="shape_touch"]
+size = Vector2(10, 22)
+
+[sub_resource type="RectangleShape2D" id="shape_bayonet"]
+size = Vector2(18, 6)
+
+[node name="Soldado" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 1
+floor_snap_length = 4.0
+script = ExtResource("1_soldado")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("mat_flash")
+position = Vector2(0, -16)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
+shape = SubResource("shape_body")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -13)
+shape = SubResource("shape_hurt")
+
+[node name="BodyDamage" type="Area2D" parent="." groups=["enemy_damage"]]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+
+[node name="Shape" type="CollisionShape2D" parent="BodyDamage"]
+position = Vector2(0, -12)
+shape = SubResource("shape_touch")
+
+[node name="Bayonet" type="Area2D" parent="." groups=["enemy_damage"]]
+position = Vector2(17, 0)
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+
+[node name="Shape" type="CollisionShape2D" parent="Bayonet"]
+position = Vector2(0, -15)
+shape = SubResource("shape_bayonet")
+
+[node name="FloorRay" type="RayCast2D" parent="."]
+position = Vector2(10, -2)
+target_position = Vector2(0, 14)
+collision_mask = 1
+
+[node name="WallRay" type="RayCast2D" parent="."]
+position = Vector2(0, -12)
+target_position = Vector2(12, 0)
+collision_mask = 1
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+position = Vector2(0, -14)
+emitting = false
+amount = 14
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 160)
+initial_velocity_min = 30.0
+initial_velocity_max = 90.0
+scale_amount_min = 1.0
+scale_amount_max = 2.0
+color = Color(0.42, 0.53, 0.78, 1)

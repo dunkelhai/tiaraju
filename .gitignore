@@ -1,0 +1,11 @@
+# Godot
+.godot/
+export/
+*.tmp
+
+# macOS
+.DS_Store
+
+# Python (ferramentas)
+__pycache__/
+*.pyc

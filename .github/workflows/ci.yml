@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  smoke:
+    name: Importa o projeto e roda as cenas sem janela
+    runs-on: ubuntu-latest
+    env:
+      GODOT_VERSION: 4.7.2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Baixa o Godot
+        run: |
+          curl -sSL -o godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          unzip -q godot.zip
+          mv Godot_v${GODOT_VERSION}-stable_linux.x86_64 godot
+          chmod +x godot
+      - name: Regenera os assets e confere que estão versionados
+        run: |
+          python3 tools/gen_assets.py
+          git diff --exit-code -- assets icon.png
+      - name: Importa
+        run: ./godot --headless --import 2>&1 | tee import.log
+      - name: Roda o título e a fase
+        run: |
+          ./godot --headless --quit-after 240 2>&1 | tee run_title.log
+          ./godot --headless res://scenes/levels/ato1_sao_miguel.tscn --quit-after 240 2>&1 | tee run_level.log
+          ! grep -E "SCRIPT ERROR|Parse Error|Failed to load" import.log run_title.log run_level.log

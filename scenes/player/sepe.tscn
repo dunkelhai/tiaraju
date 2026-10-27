@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
+[ext_resource type="Texture2D" path="res://assets/fx/luz.png" id="2_luz"]
+
+[sub_resource type="RectangleShape2D" id="shape_body"]
+size = Vector2(10, 26)
+
+[sub_resource type="RectangleShape2D" id="shape_hurt"]
+size = Vector2(10, 24)
+
+[sub_resource type="RectangleShape2D" id="shape_attack"]
+size = Vector2(24, 10)
+
+[node name="Sepe" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+floor_snap_length = 4.0
+script = ExtResource("1_player")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
+shape = SubResource("shape_body")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+
+[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -13)
+shape = SubResource("shape_hurt")
+
+[node name="AttackBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="Shape" type="CollisionShape2D" parent="AttackBox"]
+position = Vector2(19, -16)
+shape = SubResource("shape_attack")
+
+[node name="Dust" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 65.0
+gravity = Vector2(0, 90)
+initial_velocity_min = 15.0
+initial_velocity_max = 45.0
+scale_amount_min = 1.0
+scale_amount_max = 2.0
+color = Color(0.6, 0.42, 0.28, 1)
+
+[node name="Light" type="PointLight2D" parent="."]
+position = Vector2(0, -14)
+color = Color(1, 0.86, 0.72, 1)
+energy = 0.35
+texture = ExtResource("2_luz")
+texture_scale = 1.4
