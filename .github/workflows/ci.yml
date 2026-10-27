@@ -23,8 +23,9 @@ jobs:
         run: |
           python3 tools/gen_assets.py
           git diff --exit-code -- assets icon.png
-      - name: Importa (duas vezes: na primeira, recursos que apontam para outros ainda não
-          importados geram erros de parse esperados; a segunda precisa sair limpa)
+      # Duas passadas: na primeira, recursos que apontam para outros ainda não importados
+      # geram erros de parse esperados; a segunda precisa sair limpa.
+      - name: "Importa (duas vezes)"
         run: |
           ./godot --headless --import > import_primeira.log 2>&1 || true
           ./godot --headless --import 2>&1 | tee import.log
