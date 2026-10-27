@@ -17,6 +17,7 @@ var _typing := false
 var _chars := 0.0
 var _wait := 0.0
 var _busy := false
+var _finishing := false
 
 @onready var label: Label = $Texto
 
@@ -81,8 +82,9 @@ func _advance() -> void:
 
 
 func _finish() -> void:
-	if _busy and _page >= PAGES.size():
+	if _finishing:
 		return
+	_finishing = true
 	_busy = true
 	set_process(false)
 	Game.change_scene(Game.SCENE_ATO1, 1.2, 1.4)
