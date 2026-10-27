@@ -100,6 +100,7 @@ fullscreen={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true
 viewport/hdr_2d=true
 environment/defaults/default_clear_color=Color(0.07, 0.05, 0.15, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
